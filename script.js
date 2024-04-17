@@ -1,3 +1,4 @@
+/*preverjanje dolžine sporočila*/
 document.addEventListener("DOMContentLoaded", function() {
   var sporociloInput = document.querySelector("textarea[name='sporocilo']");
   var zadevaInput = document.querySelector("input[name='zadeva']");
@@ -25,7 +26,7 @@ document.addEventListener("DOMContentLoaded", function() {
   }
 });
 
-
+/*koda za dodajanje active razreda navigation baru pri mobilnih napravah*/
 const bar = document.getElementById('bar');
 const close = document.getElementById('close');
 const nav = document.getElementById('navbar');
@@ -43,7 +44,7 @@ if(close){
     
 }
 
-
+/*premikanje med login in registriraj se stranjo*/
 document.addEventListener('DOMContentLoaded', function() {
     const wrapper = document.querySelector('.wrapper');
     const loginLink = document.querySelector('.login-link');
@@ -61,10 +62,7 @@ document.addEventListener('DOMContentLoaded', function() {
 });
 
 
-
-
-
-
+/*slideshow*/
 document.addEventListener("DOMContentLoaded", function() {
   // Prikaži slike ob nalaganju strani
   var slideshows = document.querySelectorAll('.slideshow-container');
@@ -141,11 +139,3 @@ document.getElementById("gumb-stran-2").addEventListener("click", prikaziStran2)
 
 // Privzeto prikaži prvo stran dogodkov
 prikaziStran1();
-
-
-  /*preverjanje dolžine sporočila*/
-
-
-
-
-
