@@ -1,0 +1,1454 @@
+@import url("https://fonts.googleapis.com/css2?family=Spartan:wght@100;200;300;400;500;600;700;800;900&display=swap");
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Spartan", sans-serif;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+/* Global Styles */
+
+h1 {
+  font-size: 50px;
+  line-height: 64px;
+  color: #222;
+}
+
+h2 {
+  font-size: 46px;
+  line-height: 54px;
+  color: #222;
+}
+
+h4 {
+  font-size: 20px;
+  color: #222;
+}
+
+h6 {
+  font-weight: 700;
+  font-size: 12px;
+}
+
+p {
+  font-size: 16px;
+  color: #465b52;
+  margin: 15px 0 20px 0;
+}
+
+.section-p1 {
+  padding: 40px 80px;
+}
+
+.section-m1 {
+  margin: 40px 0;
+}
+
+body {
+  width: 100%;
+}
+
+#glava{
+    display:flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 20px 80px;
+    background: #E3E6F3;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.06);
+    z-index: 999;
+    position: sticky;
+    top: 0;
+    left: 0;
+}
+
+#navbar{
+    display:flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#navbar li{
+    list-style: none;
+    padding: 0 20px;
+    position: relative;
+}
+
+#navbar li a{
+    text-decoration: none;
+    font-size: 16px;
+    font-weight: 600;
+    color: #1a1a1a;
+    transition: 0.25s ease;
+}
+
+#navbar li a:hover,
+#navbar li a.active{
+    color: #d61d1d;
+}
+
+#navbar li a.active::after,
+#navbar li a:hover::after{
+    content: "";
+    width: 30%;
+    height: 2px;
+    background: #df311a;
+    position: absolute;
+    bottom: -4px;
+    left: 20px;
+}
+
+#navbar li a.loginout:hover::after { /*ni pojava črte pri login in logout gumbu*/
+  display: none;
+}
+
+ .drop:hover::after {
+  display: none;
+}
+
+
+
+
+
+/*filtriranje-search*/
+.sub-menu-1 {
+  display: none;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  background: #c91c1c;
+  z-index: 1;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+#glava .menu-bar #navbar li:hover .sub-menu-1 {
+  display: block;
+  opacity: 1; /* Nastavite opacity na 1, ko je meni prikazan */
+}
+
+#glava .menu-bar #navbar li:hover .sub-menu-1 ul li {
+  width: 150px;
+  padding: 10px;
+  border-bottom: 1px dotted #ffffff;
+  border-radius: 0;
+  text-align: left;
+}
+
+#glava .menu-bar #navbar li:hover .sub-menu-1 ul li:last-child {
+  border-bottom: none;
+}
+
+#glava .menu-bar #navbar li:hover .sub-menu-1 ul li a:hover {
+  color: #ffffff;
+}
+
+.fa-angle-right {
+  float: right;
+}
+
+.sub-menu-2 {
+  display: none;
+  position: absolute;
+  top: 0;
+  left: 100%;
+  background: #df6666;
+  z-index: 1;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.hover-me:hover .sub-menu-2 {
+  display: block;
+  opacity: 1;
+}
+
+#glava .menu-bar #navbar li .sub-menu-1 ul li:hover .sub-menu-2 {
+  display: block;
+  opacity: 1;
+  position: absolute;
+  top: 0;
+  left: 100%;
+}
+
+
+
+
+
+/*login stvari*/
+#login-page{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  background: url('slike/PXL_20240320_162751308.jpg') no-repeat;
+  background-size: cover;
+  background-position: center;
+}
+
+a.btnLogin-popup{
+  display:flex;
+  justify-content: center;
+  align-items: center;
+  width: 70px;
+  height: 30px;
+  background: transparent;
+  border: 1px solid #000000;
+  outline: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 17px;
+  color: #ffffff;
+  font-weight: 500;
+  margin-left: 33px;
+  background-color: #d61d1d;
+  transition: 0.3s;
+}
+
+a.btnLogin-popup:hover{
+background: #ffffff;
+color:#000000;
+border: 1px solid #ffffff;
+}
+
+.wrapper{
+  position: relative;
+  width: 400px;
+  height: 440px;
+  background: transparent;
+  border: 2px solid rgba(255, 255, 255, 0.5);
+  border-radius: 20px;
+  backdrop-filter: blur(20px);
+  box-shadow: 0 0 30px rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+  transition: height .2s ease;
+}
+
+.wrapper.active {
+  height: 520px;
+}
+
+
+.wrapper .form-box{
+  width: 100%;
+  padding: 40px;
+}
+
+.wrapper .form-box.login {
+  transition: transform .18s ease;
+  transform: translateX(0);
+}
+
+.wrapper.active .form-box.login {
+  transition: none;
+  transform: translateX(-400px);
+}
+
+.wrapper .form-box.register {
+  position: absolute;
+  transition: none;
+  transform: translateX(400px);
+}
+
+.wrapper.active .form-box.register {
+  transition: transform .18s ease;
+  transform: translateX(0);
+}
+
+.wrapper .close {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 70px;
+  height: 45px;
+  background: #141414;
+  font-size: 1.1em;
+  display: flex;
+  justify-content: center;
+  align-items: center; 
+  border-bottom-left-radius: 20px; /*naredi lev spoden rob zaokrožen*/
+  cursor: pointer;
+  z-index: 1;
+}
+
+.wrapper .close a{
+  color: #ffffff;
+  text-decoration: none;
+}
+
+.close a:hover {
+  color: #bd4b4b;
+  text-decoration: underline;
+}
+
+
+.form-box h2{
+  font-size: 2em;
+  color: #1a1a1a;
+  text-align: center;
+}
+
+.input-box{
+  position: relative;
+  width: 100%;
+  height: 50px;
+  border-bottom: 2px solid #1a1a1a;
+  margin: 30px 0;
+}
+
+.input-box label{
+  position: absolute;
+  top: 50%;
+  left:5px;
+  transform: translateY(-50%);
+  font-size: 1em;
+  color:#1a1a1a;
+  font-weight: 500;
+  pointer-events: none;
+  transition: 0.3s;
+}
+
+.input-box input:focus~label,
+.input-box input:valid~label {
+  top: -5px;
+}
+
+.input-box input{
+  width: 100%;
+  height: 100%;
+  background: transparent;
+  border: none;
+  outline: none;
+  font-size: 1em;
+  color: #1a1a1a;
+  font-weight: 600;
+  padding: 0 35px 0 5px;
+}
+.input-box .fa-envelope{
+  position: absolute;
+  right: 8px;
+  font-size: 1.2em;
+  color:#1a1a1a;
+  line-height: 57px;
+}
+
+.input-box .fa-lock{
+  position: absolute;
+  right: 8px;
+  font-size: 1.2em;
+  color:#1a1a1a;
+  line-height: 57px;
+}
+
+.input-box .fa-user{
+  position: absolute;
+  right: 8px;
+  font-size: 1.2em;
+  color:#1a1a1a;
+  line-height: 57px;
+}
+
+
+.btn{
+  width: 100%;
+  height: 45px;
+  background: #141414;
+  border: none;
+  outline: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 1em;
+  color: #ffffff;
+  font-weight: 500;
+}
+
+.login-register {
+  font-size: .9em;
+  color: #141414;
+  text-align: center;
+  font-weight: 500;
+  margin: 25px 0 10px;
+}
+
+.login-register p a {
+  color: #141414;
+  text-decoration: none;
+  font-weight: 600;
+}
+
+.login-register p a:hover {
+  text-decoration: underline;
+}
+
+.prijavljen .btnLogin-popup{
+  width: 110px;
+  height: 40px;
+  background: transparent;
+  border: 2px solid #ffffff;
+  outline: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 17px;
+  color: #ffffff;
+  font-weight: 500;
+  margin-top: 33px;
+  background-color: #201c1c;
+  transition: 0.3s;
+}
+
+.prijavljen .btnLogin-popup:hover{
+background: #ffffff;
+color:#d61d1d;
+}
+
+.prijavljen {
+  text-align: center; /* Poravnavanje besedila na sredino */
+  display: flex; /* Uporabimo flexbox za centriranje gumba */
+  flex-direction: column; /* Stolpec, da bo gumb pod besedilom */
+  align-items: center; /* Poravnava vodoravno na sredino */
+  justify-content: center; /* Poravnava navpično na sredino */
+}
+
+
+#mobile{
+  display: none;
+  align-items: center;
+}
+
+#close {
+  display: none;/*skrije ikono krizec na vecjih zaslonih*/
+}
+
+#naslovnica{
+    background-image: url("20180902_165531.jpg");
+    height: 90vh;
+    width: 100%;
+    background-size: cover;
+    background-position: top 25% right 0;
+    padding: 0 80px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+  }
+ 
+  #naslovnica h2 {
+    padding-bottom: 20px;
+    color:#1a1a1a;
+    background-color: rgb(253, 253, 253, 0.8);
+    border-radius: 10px; /* Zaobljeni robovi ozadja besedila */
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1);
+  }
+
+  #naslovnica h1{
+    padding-bottom: 20px;
+    color: #fd4040;
+    background-color: rgb(253, 253, 253, 0.8);
+    border-radius: 10px; 
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1);
+  }
+  
+
+  #feature {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+  }
+  #feature .fe-box {
+    width: 280px;
+    text-align: center;
+    padding: 25px 15px;
+    box-shadow: 20px 20px 34px rgba(0, 0, 0, 0.03);
+    border: 1px solid #ffacac;
+    border-radius: 4px;
+    margin: 15px 0;
+  }
+
+  #feature .fe-box:hover {
+    box-shadow: 10px 10px 54px rgba(70, 62, 221, 0.1);
+  }
+
+#feature .fe-box img {
+  width: 100%;
+  margin-bottom: 10px;
+}
+
+  #feature .fe-box h5 {
+   /*display: inline-block;  (zmanjsa pravokotnik pr hiter odziv*/
+    padding: 9px 8px 6px 8px;
+    line-height: 1;
+    border-radius: 4px;
+    color: #ffffff;
+    background-color: #fd4040;
+  }
+
+  /*na splošno o podjetju*/
+#Splošno{
+  display: flex;
+  align-items: flex-start;
+  border: 1px solid #e4640f;
+  border-width: 2px;
+  border-radius: 30px;
+  width: 75%;
+  margin: 25px 25px;
+  background-color: #fcfbfb;
+}
+
+
+  #Splošno .text{
+    width: 45%;
+     padding-left: 25px;
+  }
+
+  #Splošno h1{
+    font-size: 28px;
+    padding-right: 20px; 
+  }
+
+  #Splošno p{
+    padding: 5px 5px;
+  }
+
+  #Splošno img{
+    width: 60%;
+    height: 60%;
+    padding: 8px 80px;
+  }
+
+/*dostava*/
+#Dostava{
+  display: flex;
+  align-items: flex-start;
+  border: 1px solid #0fd6e4;
+  border-width: 2px;
+  border-radius: 30px;
+  width: 75%;
+  height: 30vh;
+  margin: 25px 25px;
+  background-color: #f5fcfd;
+}
+
+
+  #Dostava .text{
+    width: 45%;
+     padding-left: 25px;
+  }
+
+  #Dostava h1{
+    font-size: 28px;
+    padding-right: 20px; 
+  }
+
+  #Dostava p{
+    padding: 5px 5px;
+  }
+
+  #Dostava .slika{
+    width: 45%;
+    padding-top: 20px;
+    padding-left: 50px;
+  }
+
+  .dostava-slika{
+    width: 48%;
+    height: 48%;
+  }
+
+
+footer {
+  display: flex;
+}
+
+.col {
+  flex: 1;
+  padding: 0 10px; 
+}
+
+h4 {
+  margin-top: 0;
+}
+
+p {
+  margin-top: 5px;
+  margin-bottom: 5px;
+}
+
+.col a{
+  display: block;
+}
+
+.col a:hover {
+  color: red; /* Spremeni barvo besedila ob premiku miške */
+}
+
+footer {
+  background-color: lightgray; 
+  padding: 20px;
+}
+
+#naslovnica2 {
+  background-image: url("slike/dogodki.jpg");
+  width: 100%;
+  height: 70vh;
+  background-size: cover;
+  display: flex;
+  justify-content: center;
+  text-align: center;
+  flex-direction: column;
+  padding: 14px;
+}
+
+
+#naslovnica2 h1{
+  color:#df311a;
+  font-size: 100px;
+  padding: 20px;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5); /* x-offset, y-offset, blur-radius, color */
+}
+
+#naslovnica2 h2{
+  color:#ffffff;
+  font-size: 50px;
+  padding: 20px;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+.stroji-container {
+  display: flex; /* Omogoča uporabo fleksibilnih značilnosti */
+  justify-content: center; /* Horizontalno poravnaj vsebino na sredino */
+  align-items: center; /* Vertikalno poravnaj vsebino na sredino */
+  margin-top: 20px; /* Doda vrhnji rob */
+}
+
+.stroji-container .slideshow-container {
+  text-align: center; /* Horizontalno poravnaj vsebino v slideshowu na sredino */
+  padding: 20px 20px;
+}
+
+.stroji-container{
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  border: 1px solid #303636;
+  border-width: 2px;
+  border-radius: 5px;
+  width: 96%;
+  margin: 20px 25px;
+  background-color: #f8f8f8;
+}
+
+.stroji-container .slideshow-container .slideshow-image .slideshow-slika {
+  width: 650px;
+  height: 500px;
+}
+
+ .stroji-container .text{
+    width: 45%;
+     padding:20px 45px;
+  }
+
+  .stroji-container h2{
+    font-size: 28px;
+    padding-top: 120px;
+  }
+
+.stroji-container #slideshow-container{
+  padding-top: 40px;
+}
+
+.stroji-container .prev,
+.stroji-container .next {
+  position: sticky;
+  top: 50%;
+  transform: translateY(-50%);
+  background-color: rgba(95, 95, 95, 0.952);
+  color: white;
+  padding: 12px;
+  border: none;
+  cursor: pointer;
+  z-index: 100;
+  margin: 30px 7px;
+  margin-bottom: 5px;
+}
+
+.stroji-container .prev {
+  left: 0;
+}
+
+.stroji-container .next {
+  right: 0;
+}
+
+.stroji-container .slideshow-counter{
+  color: #000000;
+  margin: 0 10px;
+}
+
+/*admin stroji*/
+
+/*Andreas Storm checkbox*/
+.checkbox-wrapper-45 {
+  position: relative;
+  margin-left: 25px;
+  margin-bottom: 70px;
+}
+
+.checkbox-wrapper-45 input[type="checkbox"] {
+  display: none;
+  visibility: hidden;
+}
+
+.checkbox-wrapper-45 .cbx {
+  -webkit-perspective: 20;
+  perspective: 20;
+  display: inline-block;
+  border: 2px solid #e8e8eb;
+  background: #e8e8eb;
+  border-radius: 4px;
+  transform: translate3d(0, 0, 0);
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.checkbox-wrapper-45 .cbx:hover {
+  border-color: #0b76ef;
+}
+
+.checkbox-wrapper-45 .flip {
+  display: block;
+  transition: all 0.4s ease;
+  transform-style: preserve-3d;
+  position: relative;
+  width: 20px;
+  height: 20px;
+}
+
+.checkbox-wrapper-45 input[type="checkbox"]:checked + .cbx {
+  border-color: #0b76ef;
+}
+
+.checkbox-wrapper-45 input[type="checkbox"]:checked + .cbx .flip {
+  transform: rotateY(180deg);
+}
+
+.checkbox-wrapper-45 .front,
+.checkbox-wrapper-45 .back {
+  backface-visibility: hidden;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 20px;
+  height: 20px;
+  border-radius: 2px;
+}
+
+.checkbox-wrapper-45 .front {
+  background: #fff;
+  z-index: 1;
+}
+
+.checkbox-wrapper-45 .back {
+  transform: rotateY(180deg);
+  background: #0b76ef;
+  text-align: center;
+  color: #fff;
+  line-height: 20px;
+  box-shadow: 0 0 0 1px #0b76ef;
+}
+
+.checkbox-wrapper-45 .back svg {
+  margin-top: 3px;
+  fill: none;
+}
+
+.checkbox-wrapper-45 .back svg path {
+  stroke: #fff;
+  stroke-width: 2.5;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+/*Andreas S.*/
+
+
+
+.administratorGumbi {
+  margin: 20px 40px;  
+ font-size: 18px;
+ display: flex;
+ justify-content: space-between; /* Razporedi elemente na obeh straneh */
+ align-items: center; /* Poravnaj elemente v sredino navpično */
+}
+
+.administratorGumbi .saveGumb{
+  font-size: 18px;
+  display: inline-block;
+  padding: 15px 25px;
+  cursor: pointer;
+  text-align: center;
+  text-decoration: none;
+  outline: none;
+  color: #fff;
+  background-color: #1ae758;
+  border: none;
+  border-radius: 15px;
+  box-shadow: 0 9px #999;
+}
+
+.administratorGumbi .saveGumb:hover {background-color: #0f9b39;}
+
+.administratorGumbi .saveGumb:active {
+  background-color: #1ae758;
+  box-shadow: 0 5px #666;
+  transform: translateY(4px);
+}
+
+.administratorGumbi .logoutGumb{
+  display: inline-block;
+  padding: 15px 25px;
+  cursor: pointer;
+  text-align: center;
+  margin-left: auto; /* Premakni gumb na desno stran */
+  text-decoration: none;
+  outline: none;
+  color: #fff;
+  background-color: #d61d1d;
+  border: none;
+  border-radius: 15px;
+  box-shadow: 0 9px #999;
+}
+
+.administratorGumbi .logoutGumb:hover {background-color: #970d0d;}
+
+.administratorGumbi .logoutGumb:active {
+  background-color: #d61d1d;
+  box-shadow: 0 5px #666;
+  transform: translateY(4px);
+}
+
+
+/*kontakt*/
+#naslovnica-kontakt {
+  background-image: url("slike/Kontakt.jpg");
+  width: 100%;
+  height: 70vh;
+  background-size: cover;
+  display: flex;
+  justify-content: center;
+  text-align: center;
+  flex-direction: column;
+  padding: 14px;
+}
+
+#naslovnica-kontakt h1{
+  color:#d61d1d;
+  font-size: 75px;
+  padding: 5px;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+#naslovnica-kontakt h2{
+  color:#ffffff;
+  font-size: 35px;
+  padding: 5px;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+#naslovnica-kontakt h3{
+  color:#000000;
+  font-size: 24px;
+  padding: 5px;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+
+#contact-details{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+#contact-details .details{
+  width: 40%;
+}
+
+#contact-details .details h2,
+#form-details form h2{
+  font-size: 26px;
+  line-height: 35px;
+  padding: 20px 0;
+}
+
+#contact-details .details li{
+list-style: none;
+display: flex;
+padding: 10px 0;
+}
+
+#contact-details .details li i{
+font-size: 14px;
+padding-right: 22px;
+}
+
+#contact-details .details li{
+margin: 0;
+font-size: 14px;
+}
+
+
+
+#contact-details .map{
+  width: 55%;
+  height: 400px;
+}
+
+#contact-details .map iframe{
+  width: 100%;
+  height: 100%;
+}
+
+#form-details form {
+  width: 65%;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+#form-details form input,
+#form-details form textarea{
+  width: 100%;
+  padding: 12px 15px;
+  outline: none;
+  margin-bottom: 20px;
+  border: 1px solid #e1e1e1;
+}
+
+#form-details form button{
+  display: inline-block;
+  padding: 15px 25px;
+  font-size: 18px;
+  cursor: pointer;
+  text-align: center;
+  text-decoration: none;
+  outline: none;
+  color: #fff;
+  background-color: #d61d1d;
+  border: none;
+  border-radius: 15px;
+  box-shadow: 0 9px #999;
+}
+
+#form-details form button:hover {background-color: #a51515}
+
+#form-details form button:active {
+  background-color: #bd4b4b;
+  box-shadow: 0 5px #666;
+  transform: translateY(4px);
+}
+
+#form-details form{
+  display: flex;
+  justify-content: space-between;
+  margin: 30px;
+  padding: 60px;
+  border: 1px solid #465b52;
+  
+}
+
+#naslovnica-dogodki {
+  background-image: url("slike/stroji/sejem Komenda 7.-9.10.22/NoviStrojiHeading.jpeg");
+  width: 100%;
+  height: 70vh;
+  background-size: cover;
+  display: flex;
+  justify-content: center;
+  text-align: center;
+  flex-direction: column;
+  padding: 14px;
+}
+
+#naslovnica-dogodki h1{
+  color:#d61d1d;
+  font-size: 75px;
+  padding: 5px;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 2);
+}
+
+#naslovnica-dogodki h3{
+  color:#ffffff;
+  font-size: 22px;
+  padding: 5px;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 2);
+}
+
+.dogodek-slika{
+  width: 30%;
+  height: 30%;
+}
+
+.slideshow-container .slideshow-image .dogodek-slika {
+  width: 30%;
+  height: 30%;
+}
+
+
+#arhiv-dogodkov{
+  display: block;
+  margin: 10px 30px;
+  align-items: left;
+  justify-content: space-between;
+}
+#arhiv-dogodkov h1{
+  font-size: 24px;
+  margin-top: 20px;
+  }
+#arhiv-dogodkov span{
+  color:#d61d1d;
+  size: 18px;
+}
+#arhiv-dogodkov p{
+  font-size: 18px;
+  margin-bottom: 26px;
+  }
+#arhiv-dogodkov img{
+  margin-bottom: 26px;
+  box-shadow: 4px 4px 8px rgba(0, 0, 0, 0.5); /* horizontalno-offset vertikalno-offset razpršenost barve */
+    transition: box-shadow 0.26s ease;
+}
+#arhiv-dogodkov img:hover {
+  box-shadow: 9px 9px 16px rgba(0, 0, 0, 0.8); /* spremeni senco, ko gre čez miška */
+}
+
+
+/*slideshow*/
+.slideshow-image {
+  display: none;
+}
+
+.slideshow-nav {
+  position: relative;
+  bottom: 10px; /* Lahko prilagodite glede na vaše potrebe */
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  align-items: center;
+}
+
+.slideshow-image img {
+  width: 100%;
+  height: auto;
+}
+
+#slideshow-container {
+  position: relative;
+}
+
+.prev,
+.next {
+  position: sticky;
+  top: 50%;
+  transform: translateY(-50%);
+  background-color: rgba(194, 70, 70, 0.952);
+  color: white;
+  padding: 15px;
+  border: none;
+  cursor: pointer;
+  z-index: 100;
+  margin: 20px 7px;
+  margin-bottom: 5px;
+}
+
+.prev {
+  left: 0;
+}
+
+.next {
+  right: 0;
+}
+
+
+.slideshow-counter{
+  color: #bd4b4b;
+  margin: 0 10px;
+}
+/*slideshow*/
+
+/*gumbi za premikanje strani*/
+.gumb-dogodek{
+  border: none;
+  background-color: #d84444;
+  color:#ffffff;
+  border-radius: 60%;/* Nastavitev na 50% ustvari okrogel videz */
+  padding: 10px 15px; /* Dodajte poljubno polnilo za gumb */
+  font-size: 16px;
+  cursor: pointer;
+  margin-top: 40px;
+  
+  transform: translate(870px, -50%);
+ 
+}
+
+#gumb-stran-1{
+  margin-right: 7px;
+  padding: 10px 17px;
+}
+
+
+
+
+
+@media (max-width:799px){
+  .section-p1 {
+    padding: 40px 40px;
+}
+  #navbar {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: flex-start;
+    position: fixed;
+    top: 0;
+    right: -300px;
+    height: 100vh;
+    width: 300px;
+    background-color: #E3E6F3;
+    box-shadow: 0 40px 60px rgba(0, 0, 0, 0.1);
+    padding: 80px 0 0 10px;
+    transition: 0.3s;
+  }
+
+  #navbar.active {
+    right: 0px;
+  }
+
+  #navbar li{
+    margin-bottom: 25px;
+  }
+
+  #mobile{
+    display: flex;
+    align-items: center;
+  }
+  #mobile i{
+    color: #1a1a1a;
+    font-size: 24px;
+    padding-left: 20px;
+  }
+
+  #close {
+    display: initial; /*ikona krizec se pokaze na mobilnih napravah*/
+    position: absolute;
+    top: 30px;
+    left: 30px;
+    color: #222;
+    font-size: 24px;
+  }
+
+  #lupa{
+    display: none;
+  }
+
+
+#naslovnica {
+  height: 70vh;
+  padding: 0 80px;
+  background-position: top 30% right 30%; 
+}
+
+#feature {
+  justify-content: center;
+}
+
+#feature .fe-box {
+  margin: 15px 15px;
+}
+
+#Splošno img{
+  width: 400px;
+  height: 250px;
+  margin-top: 15px;
+}
+
+#Splošno h1{
+  font-size: 24px;
+}
+
+#Splošno{
+  width: 95%;
+}
+
+#Dostava img{
+  width: 180px;
+  height: 130px;
+  margin-top: 1px;
+}
+
+#Dostava h1{
+  font-size: 24px;
+}
+
+#Dostava{
+  width: 95%;
+}
+
+
+/*stroji*/
+#naslovnica2 {
+  height: 70vh;
+  padding: 0 80px;
+  background-position: top 30% right 30%; 
+}
+
+#naslovnica2 h1{
+  font-size: 70px;
+}
+
+#naslovnica2 h2{
+  font-size: 50px;
+}
+
+.stroji-container{
+  align-items:center;
+  justify-content:center;
+  width: 90%;
+}
+
+.stroji-container .slideshow-container .slideshow-image .slideshow-slika{
+ width: 310px;
+ height: 235px;
+ margin-left: 0px;
+}
+
+.stroji-container {
+  padding: 20px;
+}
+
+.stroji-container .text {
+  width: 50%;
+  font-size: 13px;
+  margin-right: 0px;
+}
+
+.stroji-container .text strong {
+  font-size: 13px;
+}
+
+.stroji-container .text h2{
+  font-size: 15px;
+  padding-top: 0px;
+}
+
+/*dogodki 799*/
+#naslovnica-dogodki {
+  height: 70vh;
+  padding: 0 80px;
+  background-position: 55%;
+}
+
+.gumb-dogodek{
+  transform: translate(300px, 0);
+}
+
+#arhiv-dogodkov img{
+width: 50%;
+height: 50%;
+}
+
+
+
+}
+
+
+
+
+@media (max-width:477px){
+  .section-p1 {
+    padding: 20px;
+  }
+#header{
+  padding: 10px 30px;
+}
+h1{
+  font-size: 38px;
+}
+
+h2{
+  font-size: 32px;
+}
+
+#naslovnica {
+  padding: 0 20px;
+  background-position: 55%;
+}
+
+#feature {
+  justify-content: center;
+}
+
+
+#feature .fe-box img {
+  width: 30px;
+  margin-bottom: 10px;
+}
+
+#Splošno img{
+  width: 100%;
+  height: 100%;
+  margin-top: 10px;
+}
+
+#Splošno h1{
+  font-size: 24px;
+}
+
+#Splošno{
+  flex-direction: column;
+  width: 90%;
+}
+
+#Splošno .text{
+  width: 90%;
+}
+
+#Dostava{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  width: 90%;
+  height: fit-content;
+}
+
+#Dostava .text{
+  width: 90%;
+}
+
+#Dostava .slika {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column; 
+  width: 100%; 
+}
+
+#Dostava img{
+  width: 200px;
+  height: 150px;
+  margin-bottom: 15px;
+  margin-top: 3px; 
+}
+
+#Dostava h1{
+  font-size: 24px;
+}
+
+
+/*Kontakt*/
+#naslovnica-kontakt h1 {
+  color: #d61d1d;
+  font-size: 40px;
+  padding: 5px;
+}
+
+#naslovnica-kontakt {
+  height: 50vh;
+}
+
+#contact-details {
+  flex-direction: column;
+}
+#contact-details .details{
+  width: 100%;
+  margin-bottom: 30px;
+}
+
+#contact-details .map{
+  width: 100%;
+}
+
+
+#form-details form{
+  width: 90%;
+}
+
+/*stroji*/
+#naslovnica2 {
+  height: 40vh;
+  padding: 0 60px;
+  background-position: top 30% right 30%; 
+}
+
+#naslovnica2 h1{
+  font-size: 60px;
+}
+
+#naslovnica2 h2{
+  font-size: 44px;
+}
+
+.stroji-container{
+  flex-direction: column;
+  width: 90%;
+}
+
+.stroji-container .slideshow-container .slideshow-image .slideshow-slika{
+ width: 310px;
+ height: 235px;
+}
+
+.stroji-container {
+  padding: 20px;
+}
+
+.stroji-container .text {
+  font-size: 13px;
+  width: 95%;
+}
+
+.stroji-container .text strong {
+  font-size: 13px;
+}
+
+.stroji-container .text h2{
+  font-size: 15px;
+  padding-top: 0px;
+}
+
+
+
+
+
+/*dogodki*/
+#naslovnica-dogodki {
+  height: 40vh;
+  padding: 0 60px;
+  background-position: top 30% right 30%; 
+}
+
+#naslovnica-dogodki h1{
+  font-size: 55px;
+}
+
+#naslovnica-dogodki h2{
+  font-size: 40px;
+}
+  .gumb-dogodek{
+    transform: translate(130px, 0);
+  }
+  
+  #arhiv-dogodkov img{
+  width: 70%;
+  height: 70%;
+  }
+
+
+
+}
+
+
